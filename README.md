@@ -71,10 +71,27 @@ __stddef_max_align_t.h
 float.h
 到 ndk目录/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include 文件夹下
 
+环境就配置好了，
+## 第五步使用
+OLLVM 9.0.1支持下面四种混淆方式
+
+-mllvm -fla：控制流扁平化
+
+-mllvm -sub：指令替换
+
+-mllvm -bcf：虚假控制流程
+
+-mllvm -sobf： 字符串加密
+
+在Android项目JNI目录下的 Android.mk 加入编译参数（不加此参数就没有混淆）
+
+LOCAL_CFLAGS   += -mllvm -sub -mllvm -sobf -mllvm -fla -mllvm -bcf
+
+
 
 具体参考：https://blog.csdn.net/u013314647/article/details/117740784
 
-
+ps:
 对于MAC 如果clang (LLVM option parsing): Unknown command line argument '-sub'. Try: 'clang (LLVM option parsing) --help'
 会报这个错误，是因为和mac自带的clang冲突了可能是，然后解决办法是楼主是复制了clang的快捷方式到ndk中，而应该是复制clang-9到ndk中，并且将clang-9改名为clang即可
 如果还报错
