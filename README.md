@@ -44,8 +44,9 @@ You can cite Obfuscator-LLVM using the following Bibtex entry:
 ```
 
 
-//使用方法
-##第一步
+#### 使用方法
+
+## 第一步
 git checkout llvm-9.0.1
 #新建build目录
 mkdir build
