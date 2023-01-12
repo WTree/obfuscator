@@ -44,3 +44,34 @@ You can cite Obfuscator-LLVM using the following Bibtex entry:
 ```
 
 
+//使用方法
+##第一步
+git checkout llvm-9.0.1
+#新建build目录
+mkdir build
+cd build
+#如果不想跑测试用例加上-DLLVM_INCLUDE_TESTS=OFF 
+cmake -DCMAKE_BUILD_TYPE=Release -DLLVM_CREATE_XCODE_TOOLCHAIN=ON ../
+make -j7
+
+ps：编译 挺耗时
+
+## 第二步
+复制21.0.6113669 到 21.0.6113669-ollvm 
+
+## 第三步 编译完成，将OLLVM的build/bin目录下的clang复制替换掉NDK目录中的对应文件。
+   clang、clang-9、clang-format、clang++
+复制替换到 ndk目录/toolchains/llvm/prebuilt/darwin-x86_64/bin
+
+## 第四步  复制对应的头文件到NDK目录下
+stdarg.h
+stddef.h
+__stddef_max_align_t.h
+float.h
+到 ndk目录/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/include 文件夹下
+
+
+具体参考：https://blog.csdn.net/u013314647/article/details/117740784
+
+
+
